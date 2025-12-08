@@ -10,6 +10,7 @@ import logo from '../assets/logo.png';
 const AnimatedSkyEnvironment = () => {
     const sunPosRef = useRef([100, 20, 100]);
 
+
     useFrame(({ clock }) => {
         const t = clock.getElapsedTime();
         // Slowly move sun position to create moving cloud-like reflections
@@ -21,7 +22,7 @@ const AnimatedSkyEnvironment = () => {
     });
 
     return (
-        <Environment background={false}>
+        <Environment background={false} frames={Infinity}>
             <Sky
                 distance={450000}
                 sunPosition={sunPosRef.current as [number, number, number]}
@@ -97,8 +98,9 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 z-0">
                 <img
                     src={bgImage}
-                    alt="Cerro de la Silla"
-                    className="w-full h-full object-cover object-[center_90%] scale-110"
+                    alt="Cerro de la Silla en Monterrey, Nuevo León - Vista panorámica donde SOLPOWER instala paneles solares"
+                    className="w-full h-full object-cover object-[center_70%] md:object-[center_90%] scale-110"
+                    loading="eager"
                 />
             </div>
 

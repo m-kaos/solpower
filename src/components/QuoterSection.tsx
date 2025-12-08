@@ -79,11 +79,11 @@ const QuoterSection: React.FC = () => {
     const paymentCalc = calculatePayment();
 
     return (
-        <section className="py-20" style={{ background: '#f1f1f1' }}>
+        <section id="quoter" className="py-20" style={{ background: '#f1f1f1' }} aria-labelledby="quoter-heading">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                        Calcula tu Sistema Solar
+                    <h2 id="quoter-heading" className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        Calcula tu ahorro
                     </h2>
                     <p className="text-xl text-gray-600">
                         Descubre cuántos paneles solares necesitas
@@ -94,19 +94,19 @@ const QuoterSection: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
                         <button
                             onClick={() => { setMode('bimonthly'); resetCalculator(); }}
-                            className={`p-4 font-semibold transition-all border-r border-gray-300 ${mode === 'bimonthly'
+                            className={`p-4 font-semibold transition-all md:border-r border-gray-300 ${mode === 'bimonthly'
                                 ? 'bg-[#f1f1f1] shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-800'
                                 : 'bg-[#f1f1f1] shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-600 hover:text-gray-800'
-                                } rounded-tl-[50px]`}
+                                } rounded-t-[50px] md:rounded-t-none md:rounded-tl-[50px]`}
                         >
                             📊 Consumo Bimestral
                         </button>
                         <button
                             onClick={() => { setMode('yearly'); resetCalculator(); }}
-                            className={`p-4 font-semibold transition-all border-r border-gray-300 ${mode === 'yearly'
+                            className={`p-4 font-semibold transition-all md:border-r border-gray-300 ${mode === 'yearly'
                                 ? 'bg-[#f1f1f1] shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-800'
                                 : 'bg-[#f1f1f1] shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-600 hover:text-gray-800'
-                                }`}
+                                } md:rounded-none`}
                         >
                             📅 Consumo Anual
                         </button>
@@ -115,7 +115,7 @@ const QuoterSection: React.FC = () => {
                             className={`p-4 font-semibold transition-all ${mode === 'single-bill'
                                 ? 'bg-[#f1f1f1] shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-800'
                                 : 'bg-[#f1f1f1] shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.7)] text-gray-600 hover:text-gray-800'
-                                } rounded-tr-[50px]`}
+                                } md:rounded-none md:rounded-tr-[50px]`}
                         >
                             🧾 Solo Tengo Mi Último Recibo
                         </button>

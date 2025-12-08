@@ -2,10 +2,10 @@ import React from 'react';
 
 const BenefitsSection: React.FC = () => {
     return (
-        <section className="py-20 bg-[#F1F1F1]">
+        <section className="py-20 bg-gradient-to-b from-[#F1F1F1] to-transparent" aria-labelledby="benefits-heading">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    <h2 id="benefits-heading" className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                         Principales beneficios de tener paneles solares
                     </h2>
                 </div>
