@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BenefitsSection from './components/BenefitsSection';
@@ -6,8 +7,11 @@ import BillingTableSection from './components/BillingTableSection';
 import QuoterSection from './components/QuoterSection';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import BlogHub from './pages/BlogHub';
+import ArticlePage from './pages/ArticlePage';
 
-function App() {
+// Home Page Component
+const HomePage: React.FC = () => {
   useEffect(() => {
     // Add structured data for SEO
     const structuredData = {
@@ -80,15 +84,29 @@ function App() {
   }, []);
 
   return (
-    <div className="App font-sans antialiased">
-      <Navbar />
+    <>
       <Hero />
       <BenefitsSection />
       <BillingTableSection />
       <QuoterSection />
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <div className="App font-sans antialiased">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogHub />} />
+          <Route path="/blog/*" element={<ArticlePage />} />
+        </Routes>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </Router>
   );
 }
 

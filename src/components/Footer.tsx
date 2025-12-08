@@ -1,7 +1,11 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Footer: React.FC = () => {
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
+
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
@@ -38,26 +42,38 @@ const Footer: React.FC = () => {
                         <h4 className="text-xl font-bold mb-6">Enlaces Rápidos</h4>
                         <ul className="space-y-3">
                             <li>
-                                <button
-                                    onClick={() => scrollToSection('quoter')}
-                                    className="text-white/90 hover:text-white hover:translate-x-1 transition-all inline-flex items-center"
-                                >
-                                    <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
-                                    Cotizador
-                                </button>
+                                {isHomePage ? (
+                                    <button
+                                        onClick={() => scrollToSection('quoter')}
+                                        className="text-white/90 hover:text-white hover:translate-x-1 transition-all inline-flex items-center"
+                                    >
+                                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                        Cotizador
+                                    </button>
+                                ) : (
+                                    <Link
+                                        to="/#quoter"
+                                        className="text-white/90 hover:text-white hover:translate-x-1 transition-all inline-flex items-center"
+                                    >
+                                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                        Cotizador
+                                    </Link>
+                                )}
                             </li>
                             <li>
-                                <a
-                                    href="#blog"
+                                <Link
+                                    to="/blog"
                                     className="text-white/90 hover:text-white hover:translate-x-1 transition-all inline-flex items-center"
                                 >
                                     <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
                                     Blog
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a

@@ -99,7 +99,7 @@ const Hero: React.FC = () => {
                 <img
                     src={bgImage}
                     alt="Cerro de la Silla en Monterrey, Nuevo León - Vista panorámica donde SOLPOWER instala paneles solares"
-                    className="w-full h-full object-cover object-[center_70%] md:object-[center_90%] scale-110"
+                    className="w-full h-full object-cover object-[center_35%] md:object-[center_90%]"
                     loading="eager"
                 />
             </div>

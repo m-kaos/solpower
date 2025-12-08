@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Navbar: React.FC = () => {
     const [isPastHero, setIsPastHero] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,43 +28,61 @@ const Navbar: React.FC = () => {
         <>
             {/* Desktop Navbar - Always visible */}
             <nav className={`hidden md:flex fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-                isPastHero
+                isPastHero || !isHomePage
                     ? 'bg-white/10 backdrop-blur-md py-3 shadow-lg border-b border-white/20'
                     : 'bg-transparent py-4'
             } px-6 md:px-12 justify-between items-center`}>
-                <div className="flex items-center gap-3">
+                <Link to="/" className="flex items-center gap-3">
                     <img
                         src={logo}
                         alt="Solpower"
                         className={`h-10 md:h-12 transition-all duration-500 ${
-                            isPastHero ? 'brightness-100' : 'brightness-0 invert'
+                            isPastHero || !isHomePage ? 'brightness-100' : 'brightness-0 invert'
                         }`}
                     />
-                </div>
+                </Link>
 
                 <div className="flex gap-6 items-center">
-                    <button
-                        onClick={() => scrollToSection('quoter')}
+                    {isHomePage ? (
+                        <button
+                            onClick={() => scrollToSection('quoter')}
+                            className={`px-6 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/20 ${
+                                isPastHero ? 'text-gray-800' : 'text-white'
+                            }`}
+                        >
+                            Cotizador
+                        </button>
+                    ) : (
+                        <Link
+                            to="/#quoter"
+                            className="px-6 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/20 text-gray-800"
+                        >
+                            Cotizador
+                        </Link>
+                    )}
+                    <Link
+                        to="/blog"
                         className={`px-6 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/20 ${
-                            isPastHero ? 'text-gray-800' : 'text-white'
-                        }`}
-                    >
-                        Cotizador
-                    </button>
-                    <a
-                        href="#blog"
-                        className={`px-6 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/20 ${
-                            isPastHero ? 'text-gray-800' : 'text-white'
+                            isPastHero || !isHomePage ? 'text-gray-800' : 'text-white'
                         }`}
                     >
                         Blog
-                    </a>
-                    <button
-                        onClick={() => scrollToSection('contact')}
-                        className="px-6 py-2 rounded-lg text-sm font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all"
-                    >
-                        Contacto
-                    </button>
+                    </Link>
+                    {isHomePage ? (
+                        <button
+                            onClick={() => scrollToSection('contact')}
+                            className="px-6 py-2 rounded-lg text-sm font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all"
+                        >
+                            Contacto
+                        </button>
+                    ) : (
+                        <Link
+                            to="/#contact"
+                            className="px-6 py-2 rounded-lg text-sm font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all"
+                        >
+                            Contacto
+                        </Link>
+                    )}
                 </div>
             </nav>
 
@@ -69,7 +90,7 @@ const Navbar: React.FC = () => {
             <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`md:hidden fixed top-4 right-4 z-[60] p-2 rounded-md backdrop-blur-md cursor-pointer transition-all duration-500 ${
-                    isPastHero
+                    isPastHero || !isHomePage
                         ? 'bg-white/90 text-gray-800 shadow-lg'
                         : 'bg-white/10 text-white'
                 }`}
@@ -92,25 +113,45 @@ const Navbar: React.FC = () => {
                 }`}
             >
                 <div className="flex flex-col gap-6 p-8 mt-16">
-                    <button
-                        onClick={() => scrollToSection('quoter')}
-                        className="text-gray-800 font-medium text-lg text-left hover:text-[#008BD6] transition-colors"
-                    >
-                        Cotizador
-                    </button>
-                    <a
-                        href="#blog"
+                    {isHomePage ? (
+                        <button
+                            onClick={() => scrollToSection('quoter')}
+                            className="text-gray-800 font-medium text-lg text-left hover:text-[#008BD6] transition-colors"
+                        >
+                            Cotizador
+                        </button>
+                    ) : (
+                        <Link
+                            to="/#quoter"
+                            className="text-gray-800 font-medium text-lg hover:text-[#008BD6] transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Cotizador
+                        </Link>
+                    )}
+                    <Link
+                        to="/blog"
                         className="text-gray-800 font-medium text-lg hover:text-[#008BD6] transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         Blog
-                    </a>
-                    <button
-                        onClick={() => scrollToSection('contact')}
-                        className="px-6 py-3 rounded-lg font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all text-center"
-                    >
-                        Contacto
-                    </button>
+                    </Link>
+                    {isHomePage ? (
+                        <button
+                            onClick={() => scrollToSection('contact')}
+                            className="px-6 py-3 rounded-lg font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all text-center"
+                        >
+                            Contacto
+                        </button>
+                    ) : (
+                        <Link
+                            to="/#contact"
+                            className="px-6 py-3 rounded-lg font-medium bg-[#F39611] text-white hover:bg-[#F39611]/90 transition-all text-center"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Contacto
+                        </Link>
+                    )}
                 </div>
             </div>
 
