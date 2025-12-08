@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import BenefitsSection from './components/BenefitsSection';
+import BillingTableSection from './components/BillingTableSection';
+import QuoterSection from './components/QuoterSection';
+import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App font-sans antialiased">
+      <Navbar />
+      <Hero />
+      <BenefitsSection />
+      <BillingTableSection />
+      <QuoterSection />
+      <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
